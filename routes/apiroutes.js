@@ -3,7 +3,6 @@ const router = require("express").Router();
 const path = require("path");
 const db = require("../models");
 
-module.exports = function (app) {
   router.get("/api/workouts", (req, res) => {
     db.Workout.find({})
       .then((dbWorkout) => {
@@ -52,6 +51,5 @@ module.exports = function (app) {
         res.status(400).json(err);
       });
   });
-};
 
 module.exports = router;
