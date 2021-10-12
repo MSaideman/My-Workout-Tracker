@@ -8,6 +8,9 @@ router.get("/api/workouts", (req, res) => {
       $addFields: {
         totalDuration: { $sum: "$exercises.duration" },
         totalDistance: { $sum: "$exercises.distance" },
+        totalWeight: { $sum: "$exercises.weight" },
+        totalSets: { $sum: "$exercises.sets" },
+        totalReps: { $sum: "$exercises.reps" },
       },
     },
   ])
@@ -18,12 +21,17 @@ router.get("/api/workouts", (req, res) => {
       res.status(400).json(err);
     });
 });
+
+
 router.get("/api/workouts/range", (req, res) => {
   Workout.aggregate([
     {
       $addFields: {
         totalDuration: { $sum: "$exercises.duration" },
         totalDistance: { $sum: "$exercises.distance" },
+        totalWeight: { $sum: "$exercises.weight" },
+        totalSets: { $sum: "$exercises.sets" },
+        totalReps: { $sum: "$exercises.reps" },
       },
     },
   ])
@@ -34,9 +42,22 @@ router.get("/api/workouts/range", (req, res) => {
       res.status(400).json(err);
     });
 });
-router.post("/api/workouts/", ({ body }, res) => {
-  Workout.find({})
-    .create(body)
+
+router.get("/api/workouts/:id", (req, res) => {
+  Workout.findById({
+    _id: req.params.id
+  })
+    .then((dbWorkout) => {
+      res.json(dbWorkout);
+    })
+    .catch((err) => {
+      res.status(400).json(err);
+    });
+});
+
+router.post("/api/workouts/", (req, res) => {
+  Workout.create({
+      excercises: req.body})
     .then((dbWorkout) => {
       res.json(dbWorkout);
     })
@@ -46,19 +67,12 @@ router.post("/api/workouts/", ({ body }, res) => {
 });
 
 router.put("/api/workouts/:id", (req, res) => {
-  Workout.findByIdAndUpdate(
-    {
-      _id: req.params.id,
-    },
-    {
-      $push: {
-        exercises: req.body,
-      },
-    },
-    {
-      new: true,
-    }
-  )
+  Workout.findByIdAndUpdate({
+    _id: req.params.id,
+  }, 
+    { $push: 
+      { exercises: req.body } 
+    })
     .then((dbWorkout) => {
       res.json(dbWorkout);
     })
