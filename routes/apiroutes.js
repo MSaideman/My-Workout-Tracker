@@ -1,13 +1,48 @@
 const db = require("../models");
 
-module.exports = function(app) {
-    app.get("", (req,res) => {
-        db.Workout.find()
-    })
-    app.post("", (req,res) => {
-        db.Workout.find()
-    })
-    app.put("", (req,res) => {
-        db.Workout.find()
-    })
-}
+module.exports = function (app) {
+  app.get("/api/workouts", (req, res) => {
+    db.Workout.find({})
+      .then((dbWorkout) => {
+        res.json(dbWorkout);
+      })
+      .catch((err) => {
+        res.status(400).json(err);
+      });
+  });
+  app.get("/api/workouts/range", (req, res) => {
+    db.Workout.find({})
+      .then((dbWorkout) => {
+        res.json(dbWorkout);
+      })
+      .catch((err) => {
+        res.status(400).json(err);
+      });
+  });
+  app.post("/api/workouts/", (req, res) => {
+    db.Workout.find({})
+      .create(req.body)
+      .then((dbWorkout) => {
+        res.json(dbWorkout);
+      })
+      .catch((err) => {
+        res.status(400).json(err);
+      });
+  });
+  app.put("/api/workouts/:id", (req, res) => {
+    db.Workout.findByIdAndUpdate(
+      {
+        _id: req.params.id,
+      },
+      {
+        exercises: req.body,
+      }
+    )
+      .then((dbWorkout) => {
+        res.json(dbWorkout);
+      })
+      .catch((err) => {
+        res.status(400).json(err);
+      });
+  });
+};
