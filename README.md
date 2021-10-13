@@ -8,11 +8,26 @@ Deployed URL: https://powerful-eyrie-57410.herokuapp.com/
 
 ## Description
 
+The user should be able to add exercises, add new exercises, view the combined weight and total duration of the past 7 workouts on the stats page.
+
 ## Table of Contents
+
+[User Story](#userstory)  
+[Description](#description)  
+[Installation](#installation)  
+[Usage](#usage)  
+[License](#license)  
+[Questions](#questions)
 
 ## Installation
 
+- MongoDB Atlas
+- Heroku
+- NPM: express, mongoose, morgan
+
 ## Usage
+
+I want to help a consumer reach their fitness goals more quickly by tracking their workout progress.
 
 ## License
 
