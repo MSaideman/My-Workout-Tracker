@@ -7,10 +7,6 @@ router.get("/api/workouts", (req, res) => {
     {
       $addFields: {
         totalDuration: { $sum: "$exercises.duration" },
-        totalDistance: { $sum: "$exercises.distance" },
-        totalWeight: { $sum: "$exercises.weight" },
-        totalSets: { $sum: "$exercises.sets" },
-        totalReps: { $sum: "$exercises.reps" },
       },
     },
   ])
@@ -28,10 +24,6 @@ router.get("/api/workouts/range", (req, res) => {
     {
       $addFields: {
         totalDuration: { $sum: "$exercises.duration" },
-        totalDistance: { $sum: "$exercises.distance" },
-        totalWeight: { $sum: "$exercises.weight" },
-        totalSets: { $sum: "$exercises.sets" },
-        totalReps: { $sum: "$exercises.reps" },
       },
     },
   ])
