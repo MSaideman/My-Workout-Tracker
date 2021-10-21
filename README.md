@@ -1,6 +1,7 @@
 # My-Workout-Tracker
 
 Deployed URL: https://powerful-eyrie-57410.herokuapp.com/
+![screencapture-powerful-eyrie-57410-herokuapp-2021-10-21-14_05_13](https://user-images.githubusercontent.com/82477037/138356569-790819ba-6657-4518-b1da-d39a453fc9b9.png)
 
 ## User Story
 
